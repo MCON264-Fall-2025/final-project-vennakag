@@ -10,7 +10,7 @@ linked lists, stacks, queues, maps, trees, sorting, and searching.
 - Explain your design choices in this README
 
 See Canvas assignment for full requirements.
-
+ 
 1- Where and why you used each required data structure
  I used a LinkedList in GuestListManager.java to store the master list of guests.
 It allows for efficient O(1) additions at the end of the list.- which is exactly how we want to enter out guests

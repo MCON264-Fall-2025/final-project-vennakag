@@ -13,15 +13,6 @@ public class GuestListManager {
         for (Guest guest : guests) {
             this.guests.add(guest);}}
 
-  /*  public GuestListManager() {
-        int min = 200;
-        int max = 800;
-        int n = (int)(Math.random() * (max - min + 1)) + min;
-        for (Guest guest : Generators.GenerateGuests(n)){
-            this.guests.add(guest);
-        }
-    }
-*/
     public GuestListManager() {
 
     }

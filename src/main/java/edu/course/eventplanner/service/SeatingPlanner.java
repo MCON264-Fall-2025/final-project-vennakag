@@ -13,6 +13,7 @@ public class SeatingPlanner {
             groupTag = g.getGroupTag();
             if (!sortedGroups.containsKey(groupTag)) {
                 sortedGroups.put(g.getGroupTag(), new LinkedList<>());
+                sortedGroups.get(groupTag).add(g);
             } else {
                 sortedGroups.get(groupTag).add(g);
             }
@@ -20,11 +21,16 @@ public class SeatingPlanner {
         Map<Integer, List<Guest>> seatingPlans = new TreeMap<>();
         int currTable = 1;
         int seatsRemaining = venue.getSeatsPerTable();
-        Iterator<Map.Entry<String, Queue<Guest>>> it = sortedGroups.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, Queue<Guest>> entry = it.next();
-            Queue<Guest> guestList = entry.getValue();
-            if (!guestList.isEmpty() && seatsRemaining > 0) {
+        while(!sortedGroups.isEmpty()) {
+            Iterator<Map.Entry<String, Queue<Guest>>> it = sortedGroups.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, Queue<Guest>> entry = it.next();
+                Queue<Guest> guestList = entry.getValue();
+                if (guestList.isEmpty()) {
+                    it.remove();
+                    continue;
+                }
+
                 if (seatingPlans.containsKey(currTable)) {
                     seatingPlans.get(currTable).add(guestList.poll());
                     seatsRemaining--;
@@ -33,13 +39,10 @@ public class SeatingPlanner {
                     seatingPlans.get(currTable).add(guestList.poll());
                     seatsRemaining--;
                 }
-            }
-            if (seatsRemaining == 0) {
-                currTable++;
-                seatsRemaining = venue.getSeatsPerTable();
-            }
-            if (guestList.isEmpty()) {
-                it.remove(); // correctly removes by key
+                if (seatsRemaining == 0) {
+                    currTable++;
+                    seatsRemaining = venue.getSeatsPerTable();
+                }
             }
         }
         return seatingPlans; }

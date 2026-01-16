@@ -21,24 +21,17 @@ public class SeatingPlanner {
         Map<Integer, List<Guest>> seatingPlans = new TreeMap<>();
         int currTable = 1;
         int seatsRemaining = venue.getSeatsPerTable();
-        while(!sortedGroups.isEmpty()) {
-            Iterator<Map.Entry<String, Queue<Guest>>> it = sortedGroups.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<String, Queue<Guest>> entry = it.next();
-                Queue<Guest> guestList = entry.getValue();
-                if (guestList.isEmpty()) {
-                    it.remove();
-                    continue;
+        for (Queue<Guest> guestQueue : sortedGroups.values()) {
+
+            while (!guestQueue.isEmpty()) {
+
+                if (!seatingPlans.containsKey(currTable)) {
+                    seatingPlans.put(currTable, new LinkedList<>());
                 }
 
-                if (seatingPlans.containsKey(currTable)) {
-                    seatingPlans.get(currTable).add(guestList.poll());
-                    seatsRemaining--;
-                } else {
-                    seatingPlans.put(currTable, new LinkedList<>());
-                    seatingPlans.get(currTable).add(guestList.poll());
-                    seatsRemaining--;
-                }
+                seatingPlans.get(currTable).add(guestQueue.poll());
+                seatsRemaining--;
+
                 if (seatsRemaining == 0) {
                     currTable++;
                     seatsRemaining = venue.getSeatsPerTable();

@@ -28,7 +28,7 @@ public class Main {
         int num = -1;
 
         while(num!=0) {
-            System.out.println("------Menu------");
+            System.out.println("====== Menu ======");
             System.out.println("1.Load Sample Data");
             System.out.println("2.Add Guest");
             System.out.println("3.Remove Guest");

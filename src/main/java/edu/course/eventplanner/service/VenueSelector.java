@@ -9,7 +9,9 @@ public class VenueSelector {
     public Venue selectVenue(double budget, int guestCount) {
         Venue selectedVenue = null;
         for (Venue venue : venues) {
-            if(venue.getCost() <= budget && venue.getCapacity() >= guestCount) {
+            if(venues.isEmpty()) {
+                return null;
+            }else if(venue.getCost() <= budget && venue.getCapacity() >= guestCount) {
                 selectedVenue = venue;
             }
             if(selectedVenue != null){

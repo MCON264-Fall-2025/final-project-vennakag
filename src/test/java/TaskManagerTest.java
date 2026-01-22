@@ -1,5 +1,3 @@
-package edu.course.eventplanner;
-
 import edu.course.eventplanner.model.Task;
 import edu.course.eventplanner.service.TaskManager;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SeatingPlanner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">event-planner-mini</a> &gt; <a href="index.source.html" class="el_package">edu.course.eventplanner.service</a> &gt; <span class="el_source">SeatingPlanner.java</span></div><h1>SeatingPlanner.java</h1><pre class="source lang-java linenums">package edu.course.eventplanner.service;
+
+import edu.course.eventplanner.model.*;
+import java.util.*;
+
+public class SeatingPlanner {
+    private final Venue venue;
+<span class="fc" id="L8">    public SeatingPlanner(Venue venue) { this.venue = venue; }</span>
+    public Map&lt;Integer, List&lt;Guest&gt;&gt; generateSeating(List&lt;Guest&gt; guests) {
+<span class="fc" id="L10">        Map&lt;String, Queue&lt;Guest&gt;&gt; sortedGroups = new HashMap&lt;&gt;();</span>
+        String groupTag;
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        for (Guest g : guests) {</span>
+<span class="fc" id="L13">            groupTag = g.getGroupTag();</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">            if (!sortedGroups.containsKey(groupTag)) {</span>
+<span class="fc" id="L15">                sortedGroups.put(g.getGroupTag(), new LinkedList&lt;&gt;());</span>
+<span class="fc" id="L16">                sortedGroups.get(groupTag).add(g);</span>
+            } else {
+<span class="fc" id="L18">                sortedGroups.get(groupTag).add(g);</span>
+            }
+<span class="fc" id="L20">        }</span>
+<span class="fc" id="L21">        Map&lt;Integer, List&lt;Guest&gt;&gt; seatingPlans = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L22">        int currTable = 1;</span>
+<span class="fc" id="L23">        int seatsRemaining = venue.getSeatsPerTable();</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for (Queue&lt;Guest&gt; guestQueue : sortedGroups.values()) {</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">            while (!guestQueue.isEmpty()) {</span>
+
+<span class="fc bfc" id="L28" title="All 2 branches covered.">                if (!seatingPlans.containsKey(currTable)) {</span>
+<span class="fc" id="L29">                    seatingPlans.put(currTable, new LinkedList&lt;&gt;());</span>
+                }
+
+<span class="fc" id="L32">                seatingPlans.get(currTable).add(guestQueue.poll());</span>
+<span class="fc" id="L33">                seatsRemaining--;</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">                if (seatsRemaining == 0) {</span>
+<span class="fc" id="L36">                    currTable++;</span>
+<span class="fc" id="L37">                    seatsRemaining = venue.getSeatsPerTable();</span>
+                }
+            }
+<span class="fc" id="L40">        }</span>
+<span class="fc" id="L41">        return seatingPlans; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

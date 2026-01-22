@@ -26,7 +26,7 @@ public class GuestListManagerTest {
         manager.addGuest(guest);
 
         assertEquals(1, manager.getGuestCount());
-        assertEquals("John Smith", manager.getAllGuests().getFirst().getName());
+        assertEquals("John Smith", manager.getAllGuests().get(0).getName());
     }
 
     @Test

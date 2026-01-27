@@ -1,7 +1,7 @@
-package edu.course.eventplanner;
+package edu.course.eventplanner.service;
 
-import edu.course.eventplanner.model.Guest;
-import edu.course.eventplanner.service.GuestListManager;
+import edu.course.eventplanner.service.model.Guest;
+import edu.course.eventplanner.service.service.GuestListManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

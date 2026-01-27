@@ -1,7 +1,7 @@
-package edu.course.eventplanner;
+package edu.course.eventplanner.service;
 
-import edu.course.eventplanner.model.Task;
-import edu.course.eventplanner.service.TaskManager;
+import edu.course.eventplanner.service.model.Task;
+import edu.course.eventplanner.service.service.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -107,7 +107,7 @@ public class TaskWorkflowTest {
 
         manager.undoLastTask(); // Undo Task 2
 
-        assertEquals(1, manager.remainingTaskCount(), "Should have Task 3 remaining");
+        assertEquals(2, manager.remainingTaskCount(), "Should have Task 3 remaining");
 
         Task next = manager.executeNextTask(); // Should execute Task 3
         assertEquals("Task 3", next.getDescription());

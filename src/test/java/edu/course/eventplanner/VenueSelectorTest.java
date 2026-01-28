@@ -1,7 +1,7 @@
-package edu.course.eventplanner.service;
+package edu.course.eventplanner;
 
-import edu.course.eventplanner.service.model.Venue;
-import edu.course.eventplanner.service.service.VenueSelector;
+import edu.course.eventplanner.model.Venue;
+import edu.course.eventplanner.service.VenueSelector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package edu.course.eventplanner.service.service;
+package edu.course.eventplanner.service;
 
-import edu.course.eventplanner.service.model.Venue;
+import edu.course.eventplanner.model.Venue;
 import java.util.*;
 
 public class VenueSelector {

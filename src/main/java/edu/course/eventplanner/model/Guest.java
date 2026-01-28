@@ -1,4 +1,4 @@
-package edu.course.eventplanner.service.model;
+package edu.course.eventplanner.model;
 
 public class Guest {
     private final String name;

@@ -1,13 +1,13 @@
-package edu.course.eventplanner.service;
+package edu.course.eventplanner;
 
-import edu.course.eventplanner.service.model.Guest;
-import edu.course.eventplanner.service.model.Task;
-import edu.course.eventplanner.service.model.Venue;
-import edu.course.eventplanner.service.service.GuestListManager;
-import edu.course.eventplanner.service.service.SeatingPlanner;
-import edu.course.eventplanner.service.service.TaskManager;
-import edu.course.eventplanner.service.service.VenueSelector;
-import edu.course.eventplanner.service.util.Generators;
+import edu.course.eventplanner.model.Guest;
+import edu.course.eventplanner.model.Task;
+import edu.course.eventplanner.model.Venue;
+import edu.course.eventplanner.service.GuestListManager;
+import edu.course.eventplanner.service.SeatingPlanner;
+import edu.course.eventplanner.service.TaskManager;
+import edu.course.eventplanner.service.VenueSelector;
+import edu.course.eventplanner.util.Generators;
 
 import java.util.LinkedList;
 import java.util.List;

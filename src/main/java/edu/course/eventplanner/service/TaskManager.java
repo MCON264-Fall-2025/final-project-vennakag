@@ -1,6 +1,6 @@
-package edu.course.eventplanner.service.service;
+package edu.course.eventplanner.service;
 
-import edu.course.eventplanner.service.model.Task;
+import edu.course.eventplanner.model.Task;
 import java.util.*;
 
 public class TaskManager {

@@ -1,6 +1,6 @@
-package edu.course.eventplanner.service.service;
+package edu.course.eventplanner.service;
 
-import edu.course.eventplanner.service.model.Guest;
+import edu.course.eventplanner.model.Guest;
 
 import java.util.*;
 

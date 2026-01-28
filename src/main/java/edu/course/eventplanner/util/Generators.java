@@ -1,7 +1,7 @@
-package edu.course.eventplanner.service.util;
+package edu.course.eventplanner.util;
 
-import edu.course.eventplanner.service.model.Guest;
-import edu.course.eventplanner.service.model.Venue;
+import edu.course.eventplanner.model.Guest;
+import edu.course.eventplanner.model.Venue;
 
 import java.util.*;
 

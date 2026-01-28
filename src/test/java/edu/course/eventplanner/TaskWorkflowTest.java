@@ -1,7 +1,7 @@
-package edu.course.eventplanner.service;
+package edu.course.eventplanner;
 
-import edu.course.eventplanner.service.model.Task;
-import edu.course.eventplanner.service.service.TaskManager;
+import edu.course.eventplanner.model.Task;
+import edu.course.eventplanner.service.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestMain {
+public class MainTest {
 
     @BeforeEach
     void setUp() {

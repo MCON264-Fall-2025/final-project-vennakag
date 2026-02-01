@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.course.eventplanner.GuestListManagerTest" time="0.199" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.course.eventplanner.TestMain" time="0.035" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -63,15 +63,46 @@
     <property name="maven.repo.local" value="C:\Users\vivia\.m2\repository"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testGetGuest" classname="edu.course.eventplanner.GuestListManagerTest" time="0.052"/>
-  <testcase name="testGetAllGuestsEmpty" classname="edu.course.eventplanner.GuestListManagerTest" time="0.004"/>
-  <testcase name="testMapAndListStayInSync" classname="edu.course.eventplanner.GuestListManagerTest" time="0.004"/>
-  <testcase name="testRemoveGuest" classname="edu.course.eventplanner.GuestListManagerTest" time="0.002"/>
-  <testcase name="testAddGuest" classname="edu.course.eventplanner.GuestListManagerTest" time="0.002"/>
-  <testcase name="testFindNonExistingGuest" classname="edu.course.eventplanner.GuestListManagerTest" time="0.004"/>
-  <testcase name="testRemoveGuestUpdatesInternalMap" classname="edu.course.eventplanner.GuestListManagerTest" time="0.002"/>
-  <testcase name="testGetAllGuests" classname="edu.course.eventplanner.GuestListManagerTest" time="0.006"/>
-  <testcase name="testAddGuestUpdatesInternalMap" classname="edu.course.eventplanner.GuestListManagerTest" time="0.003"/>
-  <testcase name="testConstructorPopulatesMapAndList" classname="edu.course.eventplanner.GuestListManagerTest" time="0.006"/>
-  <testcase name="testFindGuestUsesMapForEfficiency" classname="edu.course.eventplanner.GuestListManagerTest" time="0.008"/>
+  <testcase name="testSelectVenueWhenBudgetNotMet" classname="edu.course.eventplanner.TestMain" time="0.009">
+    <system-out><![CDATA[Selecting Venue...
+No suitable venue found for the given budget and guest count
+]]></system-out>
+  </testcase>
+  <testcase name="testRemoveGuest" classname="edu.course.eventplanner.TestMain" time="0.004">
+    <system-out><![CDATA[Removing Guest...
+Guest removed successfully
+
+
+
+
+]]></system-out>
+  </testcase>
+  <testcase name="testLoadSampleDataWithZeroGuests" classname="edu.course.eventplanner.TestMain" time="0.0"/>
+  <testcase name="testSelectVenueWhenBudgetMet" classname="edu.course.eventplanner.TestMain" time="0.003">
+    <system-out><![CDATA[Selecting Venue...
+Venue: Grand Ballroom was chosen successfully
+]]></system-out>
+  </testcase>
+  <testcase name="testRemoveGuestWithNonExistingGuest" classname="edu.course.eventplanner.TestMain" time="0.001">
+    <system-out><![CDATA[Removing Guest...
+Guest does not exist
+
+
+
+
+]]></system-out>
+  </testcase>
+  <testcase name="testLoadSampleData" classname="edu.course.eventplanner.TestMain" time="0.002"/>
+  <testcase name="testCallGenerateSeatingChartWithZeroGuests" classname="edu.course.eventplanner.TestMain" time="0.0">
+    <system-out><![CDATA[Generating Seating Chart...
+Please select venue or add guests as necessary.
+]]></system-out>
+  </testcase>
+  <testcase name="testCallGenerateSeatingChart" classname="edu.course.eventplanner.TestMain" time="0.0">
+    <system-out><![CDATA[Selecting Venue...
+Venue: Grand Ballroom was chosen successfully
+Generating Seating Chart...
+Guest seating chart generated successfully
+]]></system-out>
+  </testcase>
 </testsuite>

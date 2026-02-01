@@ -18,8 +18,10 @@ import java.util.*;
 <span class="fc bfc" id="L18" title="All 2 branches covered.">        if(completed.isEmpty()) {</span>
 <span class="fc" id="L19">            return null;</span>
         }
-<span class="fc" id="L21">        return completed.pop(); }</span>
+<span class="fc" id="L21">        Task t = completed.pop();</span>
+<span class="fc" id="L22">        upcoming.add(t);</span>
+<span class="fc" id="L23">        return t; }</span>
     public int remainingTaskCount() {
-<span class="fc" id="L23">        return upcoming.size(); }</span>
+<span class="fc" id="L25">        return upcoming.size(); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

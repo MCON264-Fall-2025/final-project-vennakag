@@ -1,6 +1,8 @@
 package edu.course.eventplanner.util;
 
-import edu.course.eventplanner.model.*;
+import edu.course.eventplanner.model.Guest;
+import edu.course.eventplanner.model.Venue;
+
 import java.util.*;
 
 public class Generators {

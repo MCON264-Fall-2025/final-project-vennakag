@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">event-planner-mini</a> &gt; <a href="index.source.html" class="el_package">edu.course.eventplanner</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package edu.course.eventplanner;
+
+import edu.course.eventplanner.model.Guest;
+import edu.course.eventplanner.model.Task;
+import edu.course.eventplanner.model.Venue;
+import edu.course.eventplanner.service.GuestListManager;
+import edu.course.eventplanner.service.SeatingPlanner;
+import edu.course.eventplanner.service.TaskManager;
+import edu.course.eventplanner.service.VenueSelector;
+import edu.course.eventplanner.util.Generators;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+<span class="nc" id="L17">public class Main {</span>
+    // Make fields static and package-private for testing
+    static GuestListManager guestListManager;
+    static TaskManager taskManager;
+    static VenueSelector venueSelector;
+    static Venue venue;
+    static List&lt;Guest&gt; guestList;
+    static List&lt;Venue&gt; venues;
+    static SeatingPlanner seatingPlanner;
+<span class="fc" id="L26">    static boolean venueSelected = false;</span>
+    static Map&lt;Integer, List&lt;Guest&gt;&gt; seatingChart;
+
+    public static void main(String[] args) {
+        // Initialize
+<span class="nc" id="L31">        guestListManager = new GuestListManager();</span>
+<span class="nc" id="L32">        taskManager = new TaskManager();</span>
+<span class="nc" id="L33">        guestList = new LinkedList&lt;&gt;();</span>
+
+<span class="nc" id="L35">        System.out.println(&quot;Event Planner Mini — see README for instructions.&quot;);</span>
+<span class="nc" id="L36">        Scanner sc = new Scanner(System.in);</span>
+<span class="nc" id="L37">        int num = -1;</span>
+
+        // Get initial setup
+<span class="nc" id="L40">        System.out.println(&quot;Enter initial budget:&quot;);</span>
+<span class="nc" id="L41">        double budget = sc.nextDouble();</span>
+<span class="nc" id="L42">        System.out.println(&quot;Enter expected number of guests:&quot;);</span>
+<span class="nc" id="L43">        int expectedGuests = sc.nextInt();</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        while(num != 0) {</span>
+<span class="nc" id="L46">            System.out.println(&quot;====== Menu ======&quot;);</span>
+<span class="nc" id="L47">            System.out.println(&quot;1. Load Sample Data&quot;);</span>
+<span class="nc" id="L48">            System.out.println(&quot;2. Add Guest&quot;);</span>
+<span class="nc" id="L49">            System.out.println(&quot;3. Remove Guest&quot;);</span>
+<span class="nc" id="L50">            System.out.println(&quot;4. Select Venue&quot;);</span>
+<span class="nc" id="L51">            System.out.println(&quot;5. Generate Seating Chart&quot;);</span>
+<span class="nc" id="L52">            System.out.println(&quot;6. Add preparation task&quot;);</span>
+<span class="nc" id="L53">            System.out.println(&quot;7. Execute next task&quot;);</span>
+<span class="nc" id="L54">            System.out.println(&quot;8. Undo last task&quot;);</span>
+<span class="nc" id="L55">            System.out.println(&quot;9. Print Event Summary&quot;);</span>
+<span class="nc" id="L56">            System.out.println(&quot;0. Exit\n&quot;);</span>
+<span class="nc" id="L57">            System.out.println(&quot;Enter your choice:&quot;);</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (sc.hasNextInt()) {</span>
+<span class="nc" id="L60">                num = sc.nextInt();</span>
+            }
+
+<span class="nc bnc" id="L63" title="All 11 branches missed.">            switch (num) {</span>
+                case 0:
+<span class="nc" id="L65">                    System.out.println(&quot;Exiting...&quot;);</span>
+<span class="nc" id="L66">                    break;</span>
+                case 1:
+<span class="nc" id="L68">                    System.out.println(&quot;Enter number of guests to load:&quot;);</span>
+<span class="nc" id="L69">                    int numGuests = sc.nextInt();</span>
+<span class="nc" id="L70">                    loadSampleData(numGuests);</span>
+<span class="nc" id="L71">                    System.out.println(&quot;Sample data loaded successfully!&quot;);</span>
+<span class="nc" id="L72">                    break;</span>
+                case 2:
+<span class="nc" id="L74">                    System.out.println(&quot;Enter num of guests to be added:&quot;);</span>
+<span class="nc" id="L75">                    int numToAdd = sc.nextInt();</span>
+<span class="nc" id="L76">                    System.out.println(&quot;Adding Guests...&quot;);</span>
+<span class="nc" id="L77">                    List&lt;Guest&gt; newGuests = Generators.GenerateGuests(numToAdd);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                    for(Guest guest : newGuests){</span>
+<span class="nc" id="L79">                        guestListManager.addGuest(guest);</span>
+<span class="nc" id="L80">                        guestList.add(guest);</span>
+<span class="nc" id="L81">                        System.out.println(&quot;Guest: &quot; + guest.getName() + &quot; was added successfully&quot;);</span>
+<span class="nc" id="L82">                    }</span>
+<span class="nc" id="L83">                    System.out.println(&quot;\n\n\n&quot;);</span>
+<span class="nc" id="L84">                    break;</span>
+                case 3:
+<span class="nc" id="L86">                    System.out.println(&quot;Enter guest name to be removed:&quot;);</span>
+<span class="nc" id="L87">                    String name = sc.next();</span>
+<span class="nc" id="L88">                    callRemoveGuest(name);</span>
+<span class="nc" id="L89">                    break;</span>
+                case 4:
+<span class="nc" id="L91">                    System.out.println(&quot;Enter budget: &quot;);</span>
+<span class="nc" id="L92">                    double venueBudget = sc.nextDouble();</span>
+<span class="nc" id="L93">                    System.out.println(&quot;Enter guest count: &quot;);</span>
+<span class="nc" id="L94">                    int guestCount = sc.nextInt();</span>
+<span class="nc" id="L95">                    selectVenue(venueBudget, guestCount);</span>
+<span class="nc" id="L96">                    break;</span>
+                case 5:
+<span class="nc" id="L98">                    callGenerateSeatingChart();</span>
+<span class="nc" id="L99">                    break;</span>
+                case 6:
+<span class="nc" id="L101">                    System.out.println(&quot;Adding preparation task...&quot;);</span>
+<span class="nc" id="L102">                    Task preparationTask = new Task(&quot;Preparation Task&quot;);</span>
+<span class="nc" id="L103">                    taskManager.addTask(preparationTask);</span>
+<span class="nc" id="L104">                    break;</span>
+                case 7:
+<span class="nc" id="L106">                    System.out.println(&quot;Executing next task...&quot;);</span>
+<span class="nc" id="L107">                    taskManager.executeNextTask();</span>
+<span class="nc" id="L108">                    break;</span>
+                case 8:
+<span class="nc" id="L110">                    System.out.println(&quot;Undoing last task...&quot;);</span>
+<span class="nc" id="L111">                    taskManager.undoLastTask();</span>
+<span class="nc" id="L112">                    break;</span>
+                case 9:
+<span class="nc" id="L114">                    System.out.println(&quot;Printing Event Summary...&quot;);</span>
+<span class="nc" id="L115">                    System.out.println(&quot;--Event Summary--&quot;);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                    if (venue != null) {</span>
+<span class="nc" id="L117">                        System.out.println(&quot;Venue: &quot; + venue.getName());</span>
+                    }
+<span class="nc" id="L119">                    System.out.println(&quot;Guest Count: &quot; + guestListManager.getGuestCount());</span>
+<span class="nc" id="L120">                    break;</span>
+                default:
+<span class="nc" id="L122">                    System.out.println(&quot;Invalid Input. Please try again :)&quot;);</span>
+            }
+        }
+<span class="nc" id="L125">    }</span>
+
+    // Helper method: Load sample data
+    public static void loadSampleData(int numGuests) {
+<span class="fc" id="L129">        guestList = Generators.GenerateGuests(numGuests);</span>
+<span class="fc" id="L130">        venues = Generators.generateVenues();</span>
+
+        // Add guests to manager
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for (Guest guest : guestList) {</span>
+<span class="fc" id="L134">            guestListManager.addGuest(guest);</span>
+<span class="fc" id="L135">        }</span>
+
+        // Initialize venue selector with venues
+<span class="fc" id="L138">        venueSelector = new VenueSelector(venues);</span>
+<span class="fc" id="L139">    }</span>
+
+    // Helper method: Remove guest
+    public static void callRemoveGuest(String guestName) {
+<span class="fc" id="L143">        System.out.println(&quot;Removing Guest...&quot;);</span>
+<span class="fc" id="L144">        boolean removed = guestListManager.removeGuest(guestName);</span>
+
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (removed) {</span>
+            // Also remove from guestList
+<span class="fc" id="L148">            guestList.removeIf(g -&gt; g.getName().equals(guestName));</span>
+<span class="fc" id="L149">            System.out.println(&quot;Guest removed successfully&quot;);</span>
+        } else {
+<span class="fc" id="L151">            System.out.println(&quot;Guest does not exist&quot;);</span>
+        }
+<span class="fc" id="L153">        System.out.println(&quot;\n\n\n&quot;);</span>
+<span class="fc" id="L154">    }</span>
+
+    // Helper method: Select venue
+    public static void selectVenue(double budget, int guestCount) {
+<span class="fc" id="L158">        System.out.println(&quot;Selecting Venue...&quot;);</span>
+
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">        if (venueSelector == null) {</span>
+<span class="nc" id="L161">            venues = Generators.generateVenues();</span>
+<span class="nc" id="L162">            venueSelector = new VenueSelector(venues);</span>
+        }
+
+<span class="fc" id="L165">        venue = venueSelector.selectVenue(budget, guestCount);</span>
+
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (venue != null) {</span>
+<span class="fc" id="L168">            venueSelected = true;</span>
+<span class="fc" id="L169">            seatingPlanner = new SeatingPlanner(venue);</span>
+<span class="fc" id="L170">            System.out.println(&quot;Venue: &quot; + venue.getName() + &quot; was chosen successfully&quot;);</span>
+        } else {
+<span class="fc" id="L172">            System.out.println(&quot;No suitable venue found for the given budget and guest count&quot;);</span>
+        }
+
+<span class="fc" id="L175">    }</span>
+
+    // Helper method: Generate seating chart
+    public static void callGenerateSeatingChart() {
+<span class="fc" id="L179">        System.out.println(&quot;Generating Seating Chart...&quot;);</span>
+
+<span class="pc bpc" id="L181" title="1 of 4 branches missed.">        if (!venueSelected || guestList.isEmpty()) {</span>
+<span class="fc" id="L182">            System.out.println(&quot;Please select venue or add guests as necessary.&quot;);</span>
+<span class="fc" id="L183">            return;</span>
+        }
+
+<span class="fc" id="L186">        seatingChart = seatingPlanner.generateSeating(guestList);</span>
+<span class="fc" id="L187">        System.out.println(&quot;Guest seating chart generated successfully&quot;);</span>
+
+<span class="fc" id="L189">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

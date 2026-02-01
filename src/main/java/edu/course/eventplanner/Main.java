@@ -24,6 +24,7 @@ public class Main {
     static List<Venue> venues;
     static SeatingPlanner seatingPlanner;
     static boolean venueSelected = false;
+    static Map<Integer, List<Guest>> seatingChart;
 
     public static void main(String[] args) {
         // Initialize
@@ -182,7 +183,7 @@ public class Main {
             return;
         }
 
-        Map<Integer, List<Guest>> seatingChart = seatingPlanner.generateSeating(guestList);
+        seatingChart = seatingPlanner.generateSeating(guestList);
         System.out.println("Guest seating chart generated successfully");
 
     }

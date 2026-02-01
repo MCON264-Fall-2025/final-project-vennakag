@@ -1,6 +1,7 @@
 package edu.course.eventplanner;
 
 import edu.course.eventplanner.model.Guest;
+import edu.course.eventplanner.model.Venue;
 import edu.course.eventplanner.service.GuestListManager;
 import edu.course.eventplanner.service.TaskManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,6 +72,12 @@ public class MainTest {
         assertNotNull(Main.venueSelector);
         assertFalse(Main.venueSelected);
         assertNull(Main.seatingPlanner);
+    }
+
+    @Test
+    void testSelectVenueWithoutLoadingSampleData(){
+        assertNull(Main.venueSelector, "Venue selector should be created");
+        assertNull(Main.venues, "Venues should be generated");
     }
 
     @Test
